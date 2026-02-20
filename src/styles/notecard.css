@@ -1,0 +1,29 @@
+.note-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px 16px 32px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-text {
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+}
+
+.note-date {
+  position: absolute;
+  right: 16px;
+  bottom: 10px;
+  font-size: 14px;
+  color: #353535;
+  text-align: right;
+  font-weight: 700;
+}
