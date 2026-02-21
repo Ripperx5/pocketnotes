@@ -16,7 +16,7 @@
 
 .welcome-img {
   width: 600px;
-  max-width: 100%;          
+  max-width: 100%;
   margin-bottom: 20px;
 }
 
@@ -33,14 +33,14 @@
   padding: 15px;
   background-color: #001f8b;
   color: white;
-  flex-shrink: 0;           
+  flex-shrink: 0;
 }
 
 
 .notes-area {
   padding: 20px;
   flex: 1;
-  overflow-y: auto;        
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -67,22 +67,23 @@
 .input-area {
   position: relative;
   background: #062c91;
-  padding: 20px;           
+  padding: 20px 28px;
 }
 
 
 .input-area textarea {
   width: 100%;
+  box-sizing: border-box;
   height: 130px;
   padding: 15px 30px 15px 15px;
   border-radius: 10px;
   border: none;
   resize: fit-content;
-  font-size: 16px;   
+  font-size: 16px;
 }
 
 .send-btn {
-   position: absolute;
+  position: absolute;
   right: 30px;
   bottom: 30px;
   background: transparent;
@@ -123,7 +124,7 @@
   }
 
   .input-area {
-    padding: 16px;
+    padding: 16px 24px;
   }
 
   .input-area textarea {

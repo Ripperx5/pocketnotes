@@ -9,42 +9,22 @@ const AppLayout = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleCreateGroup = (group) => {
-    const initials = group.name
-      .split(" ")
-      .map(w => w[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
-
-    const newGroup = {
-      id: Date.now(),
-      name: group.name,
-      color: group.color,
-      initials,
-      notes: []
-    };
-
+    const initials = group.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    const newGroup = { id: Date.now(), name: group.name, color: group.color, initials, notes: [] };
     setGroups([...groups, newGroup]);
     setActiveGroup(newGroup);
   };
 
   const addNoteToGroup = (note) => {
-  setGroups(prevGroups => {
-    const updatedGroups = prevGroups.map(g =>
-      g.id === activeGroup.id
-        ? { ...g, notes: [...g.notes, note] }
-        : g
-    );
-
-
-    const updatedActive = updatedGroups.find(
-      g => g.id === activeGroup.id
-    );
-    setActiveGroup(updatedActive);
-
-    return updatedGroups;
-  });
-};
+    setGroups(prev => {
+      const updated = prev.map(g =>
+        g.id === activeGroup.id ? { ...g, notes: [...g.notes, note] } : g
+      );
+      const active = updated.find(g => g.id === activeGroup.id);
+      setActiveGroup(active);
+      return updated;
+    });
+  };
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>

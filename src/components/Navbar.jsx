@@ -10,13 +10,11 @@ const Navbar = ({ onAddClick, groups, onGroupSelect, activeGroup }) => {
         {groups.map(group => (
           <div
             key={group.id}
-            className={`note-item ${activeGroup?.id === group.id ? "active" : ""}`}
+            className={'note-item' + (activeGroup?.id === group.id ? ' active' : '')}
             onClick={() => onGroupSelect(group)}
             role="listitem"
             tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") onGroupSelect(group);
-            }}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onGroupSelect(group); } }}
           >
             <div
               className="note-avatar"
@@ -30,7 +28,7 @@ const Navbar = ({ onAddClick, groups, onGroupSelect, activeGroup }) => {
       </div>
 
       <div className="navbar-footer">
-        <button className="add-button" onClick={onAddClick} aria-label="Create new group">
+        <button className="add-button" onClick={onAddClick} aria-label="Add group">
           +
         </button>
       </div>

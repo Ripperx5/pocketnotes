@@ -1,8 +1,7 @@
-import React from 'react'
-import { useState } from 'react'
-import "../styles/modal.css";
+import React, { useState } from 'react';
+import '../styles/modal.css';
 
-const COLORS = ["#B197FC", "#FF6FD8", "#3DDCFF", "#FFA36C", "#0047FF", "#6C8CFF"];
+const COLORS = ['#B197FC', '#FF6FD8', '#3DDCFF', '#FFA36C', '#0047FF', '#6C8CFF'];
 const CreateGroupModal = ({ onClose, onCreate }) => {
     const [groupName, setGroupName] = useState("");
     const [selectedColor, setSelectedColor] = useState(COLORS[0]);
@@ -13,16 +12,11 @@ const CreateGroupModal = ({ onClose, onCreate }) => {
             return;
         }
 
-        onCreate({
-            name: groupName,
-            color: selectedColor,
-            createdAt: new Date(),
-        });
+        onCreate({ name: groupName, color: selectedColor });
 
         onClose();
     };
     return (
-
         <div className="modal-overlay">
             <div className="modal-box">
                 <h2>Create New group</h2>
@@ -43,8 +37,7 @@ const CreateGroupModal = ({ onClose, onCreate }) => {
                         {COLORS.map((color) => (
                             <span
                                 key={color}
-                                className={`color-circle ${selectedColor === color ? "active" : ""
-                                    }`}
+                                className={'color-circle' + (selectedColor === color ? ' active' : '')}
                                 style={{ backgroundColor: color }}
                                 onClick={() => setSelectedColor(color)}
                             />
@@ -57,9 +50,7 @@ const CreateGroupModal = ({ onClose, onCreate }) => {
                 </button>
             </div>
         </div>
-
-
-    )
+    );
 }
 
-export default CreateGroupModal
+export default CreateGroupModal;

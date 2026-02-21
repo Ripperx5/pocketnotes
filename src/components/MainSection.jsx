@@ -3,7 +3,7 @@ import main from '../assets/main.png';
 import '../styles/mainsection.css';
 
 const MainSection = ({ group, addNote }) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const inputRef = useRef(null);
   const listRef = useRef(null);
 
@@ -13,30 +13,16 @@ const MainSection = ({ group, addNote }) => {
 
   const handleAdd = () => {
     if (!text.trim()) return;
-
-    const now = new Date();
-
-    addNote({
-      content: text,
-      createdAt: now.toLocaleString("en-IN", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
+    const timeStr = new Date().toLocaleString('en-IN', {
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
     });
-
-    setText("");
+    addNote({ content: text, createdAt: timeStr });
+    setText('');
   };
 
   useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTo({
-        top: listRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
+    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' });
   }, [group?.notes?.length]);
 
   if (!group) {
@@ -54,11 +40,8 @@ const MainSection = ({ group, addNote }) => {
 
   return (
     <div className="main-container">
-      <div
-        className="notes-header"
-        style={{ backgroundColor: group.color }}
-      >
-        <div className="note-avatar">{group.initials}</div>
+      <div className="notes-header">
+        <div className="note-avatar" style={{ backgroundColor: group.color }}>{group.initials}</div>
         <h3>{group.name}</h3>
       </div>
 
@@ -72,23 +55,14 @@ const MainSection = ({ group, addNote }) => {
       </div>
 
 
-      <div
-        className="input-area"
-        style={{ backgroundColor: group.color }}
-      >
+      <div className="input-area">
         <textarea
           ref={inputRef}
           value={text}
           onChange={e => setText(e.target.value)}
           placeholder="Enter your text here..."
         />
-        <button
-          className="send-btn"
-          onClick={handleAdd}
-          disabled={!text.trim()}
-          aria-disabled={!text.trim()}
-          aria-label="Add note"
-        >
+        <button className="send-btn" onClick={handleAdd} disabled={!text.trim()} aria-label="Add note">
           ➤
         </button>
       </div>
