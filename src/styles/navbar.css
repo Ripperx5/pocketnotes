@@ -8,10 +8,11 @@
 }
 
 .navbar-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 700;
+  text-align: left;
+  font-size: 27px;
+  font-weight: 500;
   margin-bottom: 30px;
+  padding: 24px 24px 0 24px;
 }
 .navbar-footer {
   padding: 16px;
@@ -53,26 +54,26 @@
 }
 
 .add-button {
-  width: 64px;
-  height: 64px;
+  position: fixed;
+  left:11%;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #1a0dab;
   color: #ffffff;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 34px;
+  font-size: 50px;
   font-weight: 900;
-  line-height: 1;
   border: none;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 
 .add-button:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -80,6 +81,16 @@
     width: 100%;
     height: auto;
     border-right: none;
-    border-bottom: 1px solid #e5e5e5;
+    
+  }
+}
+
+@media (max-width: 464px) {
+  .add-button {
+    left: 73%;
+    bottom: 30px;
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
   }
 }

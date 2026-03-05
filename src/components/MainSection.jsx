@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import main from '../assets/main.png';
+import lock from '../assets/lock.png';
 import '../styles/mainsection.css';
 
-const MainSection = ({ group, addNote }) => {
+const MainSection = ({ group, addNote, onBack }) => {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
   const listRef = useRef(null);
@@ -13,12 +14,27 @@ const MainSection = ({ group, addNote }) => {
 
   const handleAdd = () => {
     if (!text.trim()) return;
-    const timeStr = new Date().toLocaleString('en-IN', {
-      day: 'numeric', month: 'short', year: 'numeric',
-      hour: '2-digit', minute: '2-digit',
+
+    const now = new Date();
+
+    const date = now.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
-    addNote({ content: text, createdAt: timeStr });
-    setText('');
+
+    const time = now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    addNote({
+      content: text,
+      date: date,
+      time: time,
+    });
+
+    setText("");
   };
 
   useEffect(() => {
@@ -31,8 +47,15 @@ const MainSection = ({ group, addNote }) => {
         <div className="welcome-section">
           <img src={main} className="welcome-img" />
           <h2>Pocket Notes</h2>
-          <p>Send and receive messages securely.</p>
-          <span className="encrypted-text">🔒 end-to-end encrypted</span>
+          <p>
+            <span>Send and receive messages without keeping your phone online.</span>
+            <br />
+            <span className="second-line">
+              Use Pocket Notes on up to 4 linked devices and 1 mobile phone.
+            </span>
+          </p>
+          <span className="encrypted-text"><img src={lock} alt="lock" className="lock-icon" />end-to-end encrypted
+          </span>
         </div>
       </div>
     );
@@ -41,6 +64,16 @@ const MainSection = ({ group, addNote }) => {
   return (
     <div className="main-container">
       <div className="notes-header">
+        {onBack && (
+          <button
+            type="button"
+            className="back-btn"
+            onClick={onBack}
+            aria-label="Back to groups"
+          >
+            ←
+          </button>
+        )}
         <div className="note-avatar" style={{ backgroundColor: group.color }}>{group.initials}</div>
         <h3>{group.name}</h3>
       </div>
@@ -49,7 +82,7 @@ const MainSection = ({ group, addNote }) => {
         {group.notes.map((note, i) => (
           <div key={i} className="note-card">
             <p className="note-text">{note.content}</p>
-            <span className="note-time">{note.createdAt}</span>
+            <span className="note-time">{note.date} <span className="note-separator">•</span> {note.time}</span>
           </div>
         ))}
       </div>

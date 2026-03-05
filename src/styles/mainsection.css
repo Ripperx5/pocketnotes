@@ -1,17 +1,33 @@
 .main-container {
-  background-color: #e8f1ff;
+  background-color: #dae5f5;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .welcome-section {
   text-align: center;
   margin: auto;
   max-width: 100%;
+}
+
+.welcome-section h2 {
+  text-align: center;
+  margin: auto;
+  font-size: 38px;
+  line-height: 1.5;
+}
+
+.welcome-section p {
+  text-align: center;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .welcome-img {
@@ -21,9 +37,19 @@
 }
 
 .encrypted-text {
-  margin-top: 20px;
-  display: block;
-  font-size: 14px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.lock-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 .notes-header {
@@ -31,11 +57,24 @@
   align-items: center;
   gap: 15px;
   padding: 15px;
-  background-color: #001f8b;
+  background-color: #16008b;
   color: white;
   flex-shrink: 0;
 }
 
+.back-btn {
+  background: transparent;
+  border: none;
+  padding: 1px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 900;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin-right: 0px;
+  display: flex;
+  align-items: center;
+}
 
 .notes-area {
   padding: 20px;
@@ -43,7 +82,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 
 .note-card {
   background: white;
@@ -58,18 +96,21 @@
   position: absolute;
   right: 16px;
   bottom: 10px;
-  text-align: right;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
+.note-separator {
+  margin: 0 5px;
+  font-weight: 900;
+}
 
 .input-area {
   position: relative;
-  background: #062c91;
+  bottom: 0;
+  background: #16008b;
   padding: 20px 28px;
 }
-
 
 .input-area textarea {
   width: 100%;
@@ -113,7 +154,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 464px) {
   .main-container {
     height: auto;
     min-height: 100vh;

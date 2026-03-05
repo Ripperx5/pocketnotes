@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
 import MainSection from './MainSection.jsx';
 import CreateGroupModal from './CreateGroupModal.jsx';
@@ -7,6 +7,13 @@ const AppLayout = () => {
   const [groups, setGroups] = useState([]);
   const [activeGroup, setActiveGroup] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleCreateGroup = (group) => {
     const initials = group.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
@@ -27,18 +34,37 @@ const AppLayout = () => {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <Navbar
-        groups={groups}
-        onAddClick={() => setShowModal(true)}
-        onGroupSelect={setActiveGroup}
-        activeGroup={activeGroup}
-      />
+    <div className="app-layout">
+      {isMobile ? (
+        activeGroup ? (
+          <MainSection
+            group={activeGroup}
+            addNote={addNoteToGroup}
+            onBack={() => setActiveGroup(null)}
+          />
+        ) : (
+          <Navbar
+            groups={groups}
+            onAddClick={() => setShowModal(true)}
+            onGroupSelect={setActiveGroup}
+            activeGroup={activeGroup}
+          />
+        )
+      ) : (
+        <>
+          <Navbar
+            groups={groups}
+            onAddClick={() => setShowModal(true)}
+            onGroupSelect={setActiveGroup}
+            activeGroup={activeGroup}
+          />
 
-      <MainSection
-        group={activeGroup}
-        addNote={addNoteToGroup}
-      />
+          <MainSection
+            group={activeGroup}
+            addNote={addNoteToGroup}
+          />
+        </>
+      )}
 
       {showModal && (
         <CreateGroupModal
